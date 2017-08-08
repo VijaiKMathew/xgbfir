@@ -37,7 +37,7 @@ test_script:
   - xgbfir -mboston.dump -oboston_2.xlsx
   - xgbfir -miris.dump -oiris_2.xlsx
   - cd %APPVEYOR_BUILD_FOLDER%
-  - flake8 xgbfir/
-  - flake8 examples/
-  - dir tests\data
   - nosetests --nocapture
+  - cd %APPVEYOR_BUILD_FOLDER%
+  - flake8 --ignore E501 xgbfir/
+  - flake8 --ignore E501 examples/
