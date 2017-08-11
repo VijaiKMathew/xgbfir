@@ -4,16 +4,24 @@ environment:
   matrix:
 #    - PYTHON: "C:\\Python26"
 #    - PYTHON: "C:\\Python26-x64"
-    - PYTHON: "C:\\Python27"
-    - PYTHON: "C:\\Python27-x64"
+###    - PYTHON: "C:\\Python27"
+###    - PYTHON: "C:\\Python27-x64"
 #    - PYTHON: "C:\\Python33"
 #    - PYTHON: "C:\\Python33-x64"
-    - PYTHON: "C:\\Python34"
-    - PYTHON: "C:\\Python34-x64"
-    - PYTHON: "C:\\Python35"
-    - PYTHON: "C:\\Python35-x64"
-    - PYTHON: "C:\\Python36"
+###    - PYTHON: "C:\\Python34"
+###    - PYTHON: "C:\\Python34-x64"
+###    - PYTHON: "C:\\Python35"
+###    - PYTHON: "C:\\Python35-x64"
+###    - PYTHON: "C:\\Python36"
     - PYTHON: "C:\\Python36-x64"
+      DEPLOY: true
+
+  # PyPI deploy info
+  TEST_PYPIUSER: limexp
+  TEST_PYPIPASSWORD:
+    secure: HIdUTIHtAa4Pbb0LRpUCPu/HfEgGfsEUVg6WFiVKloU=
+  
+
 
 matrix:
   fast_finish: true  
@@ -49,3 +57,23 @@ test_script:
   - dir tests\data
   - nosetests --nocapture
 #  - echo 'OK'
+
+ artifacts:
+   - path: dist\*
+     name: pypiartifacts
+
+deploy_script:
+  - pip install wheel
+  # Account details for PyPI
+  - echo [distutils]                                  > %USERPROFILE%\\.pypirc
+  - echo index-servers =                             >> %USERPROFILE%\\.pypirc
+  - echo     pypi                                    >> %USERPROFILE%\\.pypirc
+  - echo [pypi]                                      >> %USERPROFILE%\\.pypirc
+  - echo repository=https://testpypi.python.org/pypi >> %USERPROFILE%\\.pypirc
+  - echo username=TEST_PYPIUSER                      >> %USERPROFILE%\\.pypirc
+  - echo password=%TEST_PYPIPASSWORD%                >> %USERPROFILE%\\.pypirc  
+  - set HOME=%USERPROFILE%
+  - python setup.py sdist bdist_wheel upload 
+
+on_finish:
+  - echo 'Finished'
