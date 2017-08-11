@@ -3,7 +3,7 @@ from distutils.core import setup
 setup(
     name = 'xgbfir',
     packages = ['xgbfir'],
-    version = '0.2.1-deploytest',
+    version = '0.2.1',
     description = 'Xgbfir is a XGBoost model dump parser, which ranks features as well as feature interactions by different metrics',
     author = 'Boris Kostenko',
     author_email = 'limexp@mail.ru',
