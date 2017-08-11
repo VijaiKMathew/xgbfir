@@ -58,9 +58,9 @@ test_script:
   - nosetests --nocapture
 #  - echo 'OK'
 
- artifacts:
-   - path: dist\*
-     name: pypiartifacts
+artifacts:
+  - path: dist\*
+    name: pypiartifacts
 
 deploy_script:
   - pip install wheel
