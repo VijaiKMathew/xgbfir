@@ -70,11 +70,11 @@ deploy_script:
   - echo     pypi                                    >> %USERPROFILE%\\.pypirc
   - echo     testpypi                                >> %USERPROFILE%\\.pypirc
   - echo [testpypi]                                  >> %USERPROFILE%\\.pypirc
-  - echo repository=https://testpypi.python.org/pypi >> %USERPROFILE%\\.pypirc
+  - echo repository=https://test.pypi.org/legacy/    >> %USERPROFILE%\\.pypirc
   - echo username=TEST_PYPIUSER                      >> %USERPROFILE%\\.pypirc
   - echo password=%TEST_PYPIPASSWORD%                >> %USERPROFILE%\\.pypirc  
   - echo [pypi]                                      >> %USERPROFILE%\\.pypirc
-  - echo repository=https://pypi.python.org/pypi     >> %USERPROFILE%\\.pypirc
+#  - echo repository=https://pypi.python.org/pypi     >> %USERPROFILE%\\.pypirc
   - echo username=TEST_PYPIUSER                      >> %USERPROFILE%\\.pypirc
   - echo password=%TEST_PYPIPASSWORD%                >> %USERPROFILE%\\.pypirc  
   - set HOME=%USERPROFILE%
