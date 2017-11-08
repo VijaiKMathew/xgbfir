@@ -588,7 +588,9 @@ def entry_point():
 
 def saveXgbFI(booster, feature_names = None, OutputXlsxFile = 'XgbFeatureInteractions.xlsx', MaxTrees = 100, MaxInteractionDepth = 2, MaxDeepening = -1, TopK = 100, MaxHistograms = 10, SortBy = 'Gain'):
     if not 'get_dump' in dir(booster):
-        if 'booster' in dir(booster):
+        if 'get_booster' in dir(booster):
+            booster = booster.get_booster()
+        elif 'booster' in dir(booster):
             booster = booster.booster()
         else:
             return -20
